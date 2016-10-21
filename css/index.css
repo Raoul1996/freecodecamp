@@ -1,0 +1,21 @@
+.container-fluid .dm_show{
+    margin: 20px;
+    background: #eeeeee;
+}
+.dm_show{
+    height: 200px;
+}
+.row>div{
+    text-align: center;
+}
+.row>div input{
+    margin: 0 0 20px 50px;
+    width: 18em;
+    height: 2em;
+    border-radius: 5px;
+}
+.row>div button{
+    width:5em;
+    height: 2em;
+    border-radius: 5px;
+}
