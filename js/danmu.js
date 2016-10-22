@@ -38,7 +38,7 @@ $(document).ready(function () {
 
     //按照时间排序弹幕
     var topMin=$('.dm_mask').offset().top;
-    var topMax=topMin+$('dm_mask').height();
+    var topMax=topMin+$('.dm_mask').height();
     var _top =topMin;
 
     var moveObj=function (obj) {
@@ -54,15 +54,15 @@ $(document).ready(function () {
         });
         var time=20000+10000*Math.random();
         obj.animate({
-            left:"-"+_left+"px"
+            left: '-' + _left + 'px'
         }, time, function () {
             obj.remove();
         });
     };
     var getRandomColor =function () {
         return '#'+(function (h) {
-                return new Array(7-h.length).join("0")+h
-            })((Math.random()*0x1000000<<0).toString(16));
+                return new Array(7 - h.length).join("0")+h;
+            })((Math.random() * 0x1000000 << 0).toString(16));
     };
     var getAndRun=function () {
         if (arr.length>0){
