@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>检查回文</title>
+</head>
+<body>
+<script>
+    window.onload=function () {
+        function palindrome(str){
+            //good luck;
+            //var re=+/
+            var strm=str.toLowerCase().replace(/[,.'"()_-]/g,'');
+            var strl=strm.replace(/ /g,'');
+            console.log(strl);
+            var arr=strl.split("");
+            arr.reverse();
+            var strj=arr.join("");
+            console.log(strj);
+            if(strl==strj){
+                return true;
+            }else{
+                return false;
+            }
+            //console.log(str1);
+
+
+            //eturn true;
+        }
+        console.log(palindrome("0_0 (: /-\ :) 0-0"))
+
+
+    }
+</script>
+</body>
+</html>
