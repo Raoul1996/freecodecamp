@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>randomQuote</title>
+    <!--<link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.css">-->
+    <!--<link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css.map">-->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/1.11.0/jquery.min.js"></script>
+    <style>
+        #container{
+            width: 100%;
+            height:100%;
+        }
+        .quote{
+            width:40em;
+            height:25em;
+            position: absolute;
+            left: calc(50% - 20em);
+            top: calc( 50% - 15em);
+            background: white;
+            border-radius: 1em;
+            padding: 2em;
+            box-sizing: border-box;
+        }
+        .quote >div{
+            font-size: 2em;
+        }
+        .text{
+            width: 100%;
+            height: 12.5em;
+            /*border: 1px solid black;*/
+        }
+        .ctrl{
+            margin: 0 auto;
+            width: 100%;
+            height: 5em;
+            text-align: center;
+        }
+        .ctrl button{
+            text-align: center;
+            width: 10em;
+            height: 3em;
+            border-radius:0.8em ;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <div class="quote">
+        <div class="text">
+            <div class="text-quote"></div>
+            <br/>
+            <div class="text-author"></div>
+        </div>
+        <div class="ctrl">
+            <!--<button class="btn">前一个</button>-->
+            <button class="btn">后一个</button>
+        </div>
+    </div>
+    <footer></footer>
+</div>
+<script>
+    var colors=[
+        '#16a085',
+        '#27ae60',
+        '#2c3e50',
+        '#f39c12',
+        '#e74c3c',
+        '#9b59b6',
+        '#FB6964',
+        '#342224',
+        '#472E32',
+        '#BDBB99',
+        '#77B1A9',
+        '#73A857'
+    ];
+    var currentQutoe="", currentAuthor="";
+    function getQuote() {
+        $.ajax({
+            headers:{
+                'X-Mashape-Key': 'OivH71yd3tmshl9YKzFH7BTzBVRQp1RaKLajsnafgL2aPsfP9V',
+                Accept:'application/json',
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
+            url: 'https://andruxnet-random-famous-quotes.p.mashape.com/cat=',
+            success:function (response) {
+                var response =JSON.parse(response);
+                currentAuthor=response.author;
+                currentQutoe=response.quote;
+                $(".text-quote").text(currentQutoe);
+                $(".text-author").text("————"+currentAuthor).css("text-align","right");
+                var color =Math.floor(Math.random()*colors.length);
+                $('html body').css('backgroundColor',colors[color]).css('color',colors[color]);
+            }
+        });
+    }
+    $(document).ready(function () {
+        getQuote();
+        $(".btn").on('click',getQuote);
+    })
+</script>
+</body>
+</html>

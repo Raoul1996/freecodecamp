@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>confirmTheEnding</title>
+</head>
+<body>
+<script>
+    function confirmEnding(str,target) {
+        var num = target.length;
+        console.log(num);
+        var strl = str.substr(-num,num);
+        console.log(strl);
+        if(target==strl){
+            return true;
+        }
+        return false;
+    }
+    console.log(confirmEnding("He has to give me a new name", "name"));
+    console.log(confirmEnding("Walking on water and developing software from a specification", "specification"))
+    console.log("...".length);
+</script>
+</body>
+</html>
