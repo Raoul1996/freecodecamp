@@ -1,0 +1,35 @@
+#container{
+    width: 100%;
+    height:100%;
+}
+.quote{
+    width:40em;
+    height:25em;
+    position: absolute;
+    left: calc(50% - 20em);
+    top: calc( 50% - 15em);
+    background: white;
+    border-radius: 1em;
+    padding: 2em;
+    box-sizing: border-box;
+}
+.quote >div{
+    font-size: 2em;
+}
+.text{
+    width: 100%;
+    height: 12.5em;
+    /*border: 1px solid black;*/
+}
+.ctrl{
+    margin: 0 auto;
+    width: 100%;
+    height: 5em;
+    text-align: center;
+}
+.ctrl button{
+    text-align: center;
+    width: 10em;
+    height: 3em;
+    border-radius:0.8em ;
+}
