@@ -6,8 +6,8 @@
     <title>WeatherApp</title>
     <!--CDN-->
     <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="http://cdn.staticfile.org/jquery/2.2.4/jquery.min.js"></script>
-    <script src="http://cdn.staticfile.org/angular.js/1.5.5/angular.min.js"></script>
+    <script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/angular.js/1.5.5/angular.min.js"></script>
     <style>
         h4{
             text-align: center;
@@ -73,8 +73,14 @@
                 $scope.Data =data.result;
                 $scope.items=data.result.future;
                 delete $scope.items[Object.keys($scope.items)[0]];
-            })
-        })
+            }).error(function (data) {
+                console.log('getCurrent function error');
+                console.log(data);
+            });
+        }).error(function(data){
+            console.log("getIP function error!");
+            console.log(data);
+        });
     });
 </script>
 </body>
