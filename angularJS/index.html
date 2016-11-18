@@ -53,7 +53,7 @@
         .factory('WeatherApi',function ($http) {
             var obj={};
             obj.getIP=function () {
-                return $http.jsonp('http://ipinfo.io/json?callback=JSON_CALLBACK');
+                return $http.jsonp('https://ipinfo.io/json?callback=JSON_CALLBACK');
                 //返回当前电脑的ip地址？
                 //http://code.juhe.cn/docs/212(jsonp实现跨域)。
             };
