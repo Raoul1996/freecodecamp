@@ -9,11 +9,12 @@ app.factory('WeatherApi', function ($http) {
     };
     obj.getCurrent = function (ip) {
         var api = 'http://v.juhe.cn/weather/ip?format=1';
-//        var APPKey = '&key=3d4519be13bc14cd7f9262276d4d6dcf&ip=';
+       var APPKey = '&key=3d4519be13bc14cd7f9262276d4d6dcf&ip=';
         var cb = '&callback=JSON_CALLBACK';
         return $http.jsonp(api + APPKey + ip + cb);
     };
     return obj;
+    console.dir(obj);
 });
 app.controller('MainCtrl', function ($scope, WeatherApi) {
     $scope.Data = {};

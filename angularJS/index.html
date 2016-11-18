@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="Weather">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,32 +8,47 @@
     <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/angular.js/1.5.5/angular.min.js"></script>
-    <!--localhost-->
-    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <script src="node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="node_modules/angular/angular.min.js"></script>
-    <style></style>
+    <style>
+        h4{
+            text-align: center;
+        }
+        body{
+            margin: 10px;
+        }
+    </style>
 </head>
-<body>
+<body  ng-app="Weather">
 <div class="container" ng-controller="MainCtrl">
     <header></header>
     <div class="row">
         <div class="text-center status">
             <p>{{Data.today.city}}</p>
-            <p></p>
-            <p></p>
-            <p></p>
-            <p></p>
-            <p></p>
-            <p></p>
-            <p></p>
-            <p></p>
-            <p></p>
+            <p>{{Data.today.week}}</p>
+            <p>{{Data.today.date_y}}</p>
+            <p>发布时间:{{Data.sk.time}}</p>
+            <hr/>
+            <h4 class="text-center">今日天气</h4>
+            <p>{{Data.today.weather}}</p>
+            <p>{{Data.today.temperature}}</p>
+            <p>{{Data.sk.humidity}}</p>
+            <p>{{Data.today.wind}}</p>
+            <p>穿衣建议:{{Data.today.dressing_advice}}</p>
+        </div>
+        <hr/>
+    </div>
+    <h4>未来六天的天气</h4>
+    <div class="col-xs-4 col-md-2" ng-repeat="item in items">
+        <div class="text-center status">
+            <h5>{{item.week}}</h5>
+            <p>{{item.week}}</p>
+            <p>{{item.temperature}}</p>
+            <p>{{item.wind}}</p>
         </div>
     </div>
-    <div class=""></div>
+    <!--<div class=""></div>-->
 </div>
 <script>
+    //var key='3d4519be13bc14cd7f9262276d4d6dcf';//enter your appKey
     var app=angular.module('Weather',[])
         .factory('WeatherApi',function ($http) {
             var obj={};
@@ -41,8 +56,26 @@
                 return $http.jsonp('http://ipinfo.io/json?callback=JSON_CALLBACK');
                 //返回当前电脑的ip地址？
                 //http://code.juhe.cn/docs/212(jsonp实现跨域)。
-            }
+            };
+            obj.getCurrent =function (ip) {
+                var api ='http://v.juhe.cn/weather/ip?format=1';
+                var APPKey = '&key=3d4519be13bc14cd7f9262276d4d6dcf&ip=';
+                var cb ='&callback=JSON_CALLBACK';
+                return $http.jsonp(api+APPKey+ip+cb);
+            };
+            return obj;
+        });
+    app.controller('MainCtrl',function ($scope,WeatherApi) {
+        $scope.Data = {};
+        WeatherApi.getIP().success(function (data) {
+            var ip=data.ip;
+            WeatherApi.getCurrent(ip).success(function (data) {
+                $scope.Data =data.result;
+                $scope.items=data.result.future;
+                delete $scope.items[Object.keys($scope.items)[0]];
+            })
         })
+    });
 </script>
 </body>
 </html>
