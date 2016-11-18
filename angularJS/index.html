@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="Weather">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>WeatherApp</title>
+    <!--CDN-->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/angular.js/1.5.5/angular.min.js"></script>
+    <!--localhost-->
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="node_modules/angular/angular.min.js"></script>
+    <style></style>
+</head>
+<body>
+<div class="container" ng-controller="MainCtrl">
+    <header></header>
+    <div class="row">
+        <div class="text-center status">
+            <p>{{Data.today.city}}</p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+        </div>
+    </div>
+    <div class=""></div>
+</div>
+<script>
+    var app=angular.module('Weather',[])
+        .factory('WeatherApi',function ($http) {
+            var obj={};
+            obj.getIP=function () {
+                return $http.jsonp('http://ipinfo.io/json?callback=JSON_CALLBACK');
+                //返回当前电脑的ip地址？
+                //http://code.juhe.cn/docs/212(jsonp实现跨域)。
+            }
+        })
+</script>
+</body>
+</html>
