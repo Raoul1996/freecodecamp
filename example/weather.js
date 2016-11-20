@@ -14,7 +14,6 @@ app.factory('WeatherApi', function ($http) {
         return $http.jsonp(api + APPKey + ip + cb);
     };
     return obj;
-    console.dir(obj);
 });
 app.controller('MainCtrl', function ($scope, WeatherApi) {
     $scope.Data = {};
